@@ -1,0 +1,14 @@
+---
+- name: Ensure pacserve is installed from the repo
+  pacman:
+    name: pacserve
+    state: present
+  notify:
+    - "Restart pacserve service"
+
+- name: Ensure pacserve service is started and enabled
+  service:
+    name: pacserve
+    enabled: yes
+  notify:
+    - "Restart pacserve service"

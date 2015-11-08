@@ -1,0 +1,8 @@
+---
+- name: Check all required variables are set
+  assert:
+    that:
+      - pacman_repo_sig_level != ''
+      - pacman_repo_name != ''
+      - pacman_repo_server != ''
+  tags: ['check_vars']

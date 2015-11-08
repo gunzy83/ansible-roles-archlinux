@@ -1,0 +1,43 @@
+#
+# /etc/pacman.conf
+#
+
+[options]
+HoldPkg     = pacman glibc
+Architecture = armv6h
+{% if pacman_ignore_pkg is defined %}IgnorePkg   = {% for pkg in pacman_ignore_pkg %}{{ pkg }} {% endfor %}
+{% endif %}
+{% if pacman_ignore_group is defined %}IgnorePkg   = {% for group in pacman_ignore_group %}{{ group }} {% endfor %}
+{% endif %}
+
+# Misc options
+{% if not pacman_use_syslog %}#{% endif %}UseSyslog
+{% if not pacman_color %}#{% endif %}Color
+{% if not pacman_total_download %}#{% endif %}TotalDownload
+{% if not pacman_check_space %}#{% endif %}CheckSpace
+{% if not pacman_verbose_package_lists %}#{% endif %}VerbosePkgLists
+
+# If you wish to check signatures but avoid local sign and trust issues, use
+# the following line. This will treat any key imported into pacman's keyring as
+# trusted.
+SigLevel = Required DatabaseOptional
+LocalFileSigLevel = Optional
+
+# Configured Repositories
+[core]
+Include = {{ pacman_include }}
+
+[extra]
+Include = {{ pacman_include }}
+
+[community]
+Include = {{ pacman_include }}
+
+[alarm]
+Include = {{ pacman_include }}
+
+[aur]
+Include = {{ pacman_include }}
+
+# Include any additional custom repositories
+# Include = /etc/pacman.d/*.conf

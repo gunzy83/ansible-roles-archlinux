@@ -1,0 +1,19 @@
+---
+- include: init.yml
+
+- name: Ensure config files (eg pacserve) exist to prevent pacman errors
+  command: "touch {{ item }}" 
+  args:
+    creates: "{{ item }}"
+  with_items: pacman_repo_includes
+  
+- name: Ensure repo configuration file exists
+  template:
+    src: repo.conf.j2
+    dest: /etc/pacman.d/{{pacman_repo_name}}.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - "Update package cache"
+

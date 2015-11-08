@@ -1,0 +1,12 @@
+---
+- name: Ensure that pacman.conf is up to date
+  template:
+    src: "{{ ansible_machine }}.conf.j2"
+    dest: /etc/pacman.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - "Update package cache"
+
+

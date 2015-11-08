@@ -1,0 +1,5 @@
+---
+- name: Restart pacserve service
+  service:
+    name: pacserve
+    state: restarted

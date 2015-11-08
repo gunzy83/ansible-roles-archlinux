@@ -1,0 +1,11 @@
+pacman_use_syslog: no
+pacman_color: yes
+pacman_total_download: no
+pacman_check_space: yes
+pacman_verbose_package_lists: yes
+pacman_testing: no
+pacman_community_testing: no
+pacman_multilib: yes
+pacman_multilib_testing: no
+pacman_ignore_pkg:
+pacman_ignore_group:

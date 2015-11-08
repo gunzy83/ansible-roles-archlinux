@@ -1,0 +1,8 @@
+---
+- name: Reload systemd
+  command: systemctl daemon-reload
+
+- name: Restart reflector service
+  service: 
+    name: "{{ reflector_service_name }}"
+    state: restarted
