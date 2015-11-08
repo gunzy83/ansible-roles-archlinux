@@ -7,6 +7,7 @@ ansible-roles-archlinux
 * pacman-repo - adds a pacman repo (use as a dependecy for other roles)
 * pacserve - configures pacserve
 * reflector - configures reflector to run periodically as a service
+* makepkg - configures makepkg for the system type
 
 Installation
 ============
@@ -31,6 +32,7 @@ Usage
         - pacman
         - reflector
         - pacserve
+        - makepkg
 
 Using pacman-repo as a dependency:
     
@@ -46,7 +48,6 @@ Using pacman-repo as a dependency:
 Future Plans
 ============
 
-* Makepkg configuration
 * Aura install and configuration
 * Travis CI tests
 
