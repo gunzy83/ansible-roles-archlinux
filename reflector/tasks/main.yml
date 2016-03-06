@@ -14,7 +14,7 @@
     group: root 
     mode: 0644
   notify:
-    - "Reload systemd"
+    - "Reload systemd units"
 
 - name: Ensure the update service is enabled
   service: 
@@ -30,7 +30,7 @@
     mode: 0644
   when: reflector_timer
   notify:
-    - "Reload systemd"
+    - "Reload systemd units"
 
 - name: Ensure the timer is enabled
   service: 

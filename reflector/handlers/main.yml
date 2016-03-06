@@ -1,5 +1,5 @@
 ---
-- name: Reload systemd
+- name: Reload systemd units
   command: systemctl daemon-reload
 
 - name: Restart reflector service

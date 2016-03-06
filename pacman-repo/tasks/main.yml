@@ -1,11 +1,12 @@
 ---
-- include: init.yml
+- name: Check that all required variables are set
+  include: init.yml
 
 - name: Ensure config files (eg pacserve) exist to prevent pacman errors
   command: "touch {{ item }}" 
   args:
     creates: "{{ item }}"
-  with_items: pacman_repo_includes
+  with_items: "{{ pacman_repo_includes }}"
   
 - name: Ensure repo configuration file exists
   template:
