@@ -1,13 +1,11 @@
 ---
-- name: Check that all required variables are set
-  include: init.yml
+- name: Ensure pacman is set up to use pacserve
+  include_role:
+    name: pacman
+  vars:
+    pacman_add_repos:
+      - "{{ pacman_repo_name }}"
 
-- name: Ensure config files (eg pacserve) exist to prevent pacman errors
-  command: "touch {{ item }}" 
-  args:
-    creates: "{{ item }}"
-  with_items: "{{ pacman_repo_includes }}"
-  
 - name: Ensure repo configuration file exists
   template:
     src: repo.conf.j2
@@ -18,3 +16,5 @@
   notify:
     - "Update package cache"
 
+- name: Force refresh pacman cache if required
+  meta: flush_handlers

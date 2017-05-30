@@ -24,29 +24,29 @@ LocalFileSigLevel = Optional
 
 # Configured Repositories
 {% if pacman_testing %}[testing]
-{% if pacman_repo_includes is defined %}{% for include in pacman_repo_includes %}Include = {{ include }}
+{% if pacman_extra_includes is defined %}{% for include in pacman_extra_includes %}Include = {{ include }}
 {% endfor %}{% endif %}
 Include = {{ pacman_include }}
 
 {% endif %}
 [core]
-{% if pacman_repo_includes is defined %}{% for include in pacman_repo_includes %}Include = {{ include }}
+{% if pacman_extra_includes is defined %}{% for include in pacman_extra_includes %}Include = {{ include }}
 {% endfor %}{% endif %}
 Include = {{ pacman_include }}
 
 [extra]
-{% if pacman_repo_includes is defined %}{% for include in pacman_repo_includes %}Include = {{ include }}
+{% if pacman_extra_includes is defined %}{% for include in pacman_extra_includes %}Include = {{ include }}
 {% endfor %}{% endif %}
 Include = {{ pacman_include }}
 
 {% if pacman_community_testing %}[community-testing]
-{% if pacman_repo_includes is defined %}{% for include in pacman_repo_includes %}Include = {{ include }}
+{% if pacman_extra_includes is defined %}{% for include in pacman_extra_includes %}Include = {{ include }}
 {% endfor %}{% endif %}
 Include = {{ pacman_include }}
 
 {% endif %}
 [community]
-{% if pacman_repo_includes is defined %}{% for include in pacman_repo_includes %}Include = {{ include }}
+{% if pacman_extra_includes is defined %}{% for include in pacman_extra_includes %}Include = {{ include }}
 {% endfor %}{% endif %}
 Include = {{ pacman_include }}
 

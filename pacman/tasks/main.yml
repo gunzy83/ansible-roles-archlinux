@@ -1,4 +1,19 @@
 ---
+- name: Refresh local facts (virtual only)
+  setup:
+    gather_subset: virtual
+
+- name: Get previous Pacman variables
+  set_fact:
+    pacman_prev_extra_includes: "{{ ansible_local.pacman.pacman_extra_includes | default([]) }}"
+    pacman_prev_repos: "{{ ansible_local.pacman.pacman_repos | default([]) }}"
+  when: ansible_local is defined and 'pacman' in ansible_local
+
+- name: Construct Pacman variables
+  set_fact:
+    pacman_extra_includes: "{{ pacman_add_includes | union(pacman_prev_extra_includes) | difference(pacman_remove_includes) }}"
+    pacman_repos: "{{ pacman_add_repos | union(pacman_prev_repos) | difference(pacman_remove_repos) }}"
+
 - name: Ensure that pacman.conf is up to date
   template:
     src: "{{ ansible_machine }}.conf.j2"
@@ -9,4 +24,18 @@
   notify:
     - "Update package cache"
 
+- name: Ensure that the facts directory exists
+  file:
+    path: /etc/ansible/facts.d/
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
 
+- name: Install local facts
+  template:
+    src: "pacman.fact.j2"
+    dest: "/etc/ansible/facts.d/pacman.fact"
+    owner: root
+    group: root
+    mode: 0644

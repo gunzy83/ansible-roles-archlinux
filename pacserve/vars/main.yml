@@ -1,2 +1,6 @@
+---
 pacserve_repo: "xyne-{{ansible_machine}}"
-pacserve_server: "http://xyne.archlinux.ca/repos/xyne"
+#pacserve_server: "http://xyne.archlinux.ca/repos/xyne"
+# temporary workaround:
+pacserve_server: "http://xyne.archlinux.ca/bin/repo.php?file="
+pacserve_executable: /etc/pacman.d/pacserve

@@ -1,8 +1,7 @@
 ---
 dependencies:
-  - { 
-    role: pacman-repo, 
-    pacman_repo_name: "{{pacserve_repo}}", 
+  - role: pacman-repo
+    pacman_repo_name: "{{pacserve_repo}}"
     pacman_repo_server: "{{pacserve_server}}"
-  }
-  # add firewall dependencies here (ferm or firewalld)
+
+# add firewall dependencies here (ferm or firewalld)

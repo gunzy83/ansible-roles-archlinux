@@ -1,4 +1,4 @@
----
-- name: Update package cache
-  pacman:
-    update_cache: yes
+# ---
+# - name: Update package cache
+#   pacman:
+#     update_cache: yes

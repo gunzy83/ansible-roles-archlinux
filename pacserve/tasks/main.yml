@@ -3,8 +3,6 @@
   pacman:
     name: pacserve
     state: present
-  notify:
-    - "Restart pacserve service"
 
 - name: Ensure pacserve service is started and enabled
   service:
@@ -12,3 +10,12 @@
     enabled: yes
   notify:
     - "Restart pacserve service"
+
+- name: Ensure pacman is set up to use pacserve
+  include_role:
+    name: pacman-repo
+  vars:
+    pacman_repo_name: "{{pacserve_repo}}"
+    pacman_repo_server: "{{pacserve_server}}"
+    pacman_add_includes:
+      - "{{ pacserve_executable }}"
