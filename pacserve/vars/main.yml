@@ -1,6 +1,9 @@
 ---
-pacserve_repo: "xyne-{{ansible_machine}}"
+pacserve_repo: "xyne-{{ ansible_machine if ansible_machine in pacserve_architectures else 'any' }}"
 #pacserve_server: "http://xyne.archlinux.ca/repos/xyne"
 # temporary workaround:
 pacserve_server: "http://xyne.archlinux.ca/bin/repo.php?file="
 pacserve_executable: /etc/pacman.d/pacserve
+pacserve_architectures:
+  - "x86_64"
+  - "i686"
